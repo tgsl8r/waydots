@@ -1,0 +1,15 @@
+base-devel
+git
+linux6.14
+linux6.14-headers
+linux-firmware
+mesa
+iwd
+pipewire
+pipewire-pulse
+elogind
+wayland-protocols
+wlroots
+qt6-wayland
+foot
+qutebrowser
