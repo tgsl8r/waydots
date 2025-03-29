@@ -1,0 +1,3 @@
+[submodule "/home/toby/.src/dwl"]
+	path = /home/toby/.src/dwl
+	url = git@github.com:tgsl8r/dwl.git
