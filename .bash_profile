@@ -5,3 +5,5 @@
 
 # Add user scripts to PATH
 PATH=~/.local/bin:$PATH
+
+exec wstart
