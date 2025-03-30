@@ -1,0 +1,2 @@
+dbus-run-session dwl > ~/.cache/dwl_info &
+yambar &
