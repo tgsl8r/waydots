@@ -1,7 +1,8 @@
 bar:
-  height: 26
+  height: 20
   location: top
   background: 000000ff
+  spacing: 5
 
   left:
     - dwl:
@@ -18,44 +19,79 @@ bar:
 
                     selected: {string: {text: "[{name}]"}}
                     ~empty: {string: {text: " {name} "}}
-                    urgent: {string: {text: " !{name}! "}}
+                    urgent: {string: {text: " !{name}! ", foreground: ffa600ff}}
 
   right:
-    - pipewire:
-        anchors:
-          volume: &volume
-            conditions:
-              muted: {string: {text: "{linear_volume}%", foreground: ff0000ff}}
-              ~muted: {string: {text: "{linear_volume}%"}}
-        content:
-          list:
-            items:
-              - map:
-                  conditions:
-                    type == "sink":
-                      map:
-                        conditions:
-                          icon == "audio-headset-bluetooth":
-                            string: {text: "🎧  "}
-                        default:
-                          - ramp:
-                              tag: linear_volume
-                              items:
-                                - string: {text: "🔈  "}
-                                - string: {text: "🔉  "}
-                                - string: {text: "🔊  "}
-                    type == "source":
-                      - string: {text: "🎙  "}
-              - map:
-                  <<: *volume
+      - label:
+          content: {string: {text: '|'}}
+      - pipewire:
+          content:
+            map:
+              conditions:
+                type == sink:
+                  map:
+                    conditions:
+                      muted: {string: {text: 󰖁 , foreground: ffa600ff}}
+                      ~muted:
+                        ramp:
+                          tag: volume
+                          items:
+                            - string: {text: 󰖀}
+                            - string: {text: 󰖀}
+                            - string: {text: 󰕾}
+      - network:
+         # name: wlp194s0
+         content:
+           map:
+             conditions:
+               state == down: {string: {text: 󰤭,}}
+               state == up:
+                 ramp:
+                   tag: signal
+                   items:
+                     # - string: {text: 󰤟, font: *icon}
+                     - string: {text: 󰤢}
+                     - string: {text: 󰤥}
+                     - string: {text: 󰤨}
+      - battery:
+          name: BAT0
+          poll-interval: 2000
+          anchors:
+            discharging: &discharging
+              list:
+                items:
+                  - ramp:
+                      tag: capacity
+                      items:
+                        - string: {text: "󰂃{capacity}%", foreground: ffa600ff}
+                        - string: {text: "󰂃{capacity}%", foreground: ffa600ff}
+                        - string: {text: 󰁼}
+                        - string: {text: 󰁽}
+                        - string: {text: 󰁾}
+                        - string: {text: 󰁿}
+                        - string: {text: 󰂀}
+                        - string: {text: 󰂁}
+                        - string: {text: 󰂂}
+                        - string: {text: 󰁹}
+          content:
+            map:
+              conditions:
+                state == unknown:
+                  <<: *discharging
+                state == discharging:
+                  <<: *discharging
+                state == charging:
+                  - string: {text: 󰂄, foreground: 00ff00ff}
+                  - string: {text: "{capacity}%"}
+                state == full:
+                  - string: {text: 󱟢, foreground: 00ff00ff}
+      - label:
+          content: {string: {text: '|'}}
+      - clock:
+          date-format: "%Y/%m/%d"
+          content:
+            - string: {text: "{date}", right-margin: 5}
+            - string: {text: "{time}"}
 
-    - battery:
-        name: BAT0
-        poll-interval: 30000
-        content:
-          string: {text: "BAT: {capacity}% |"}
-    - clock:
-        date-format: "%Y/%m/%d"
-        content:
-          - string: {text: " {date}", right-margin: 5}
-          - string: {text: "{time}"}
+
+
