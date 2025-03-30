@@ -13,5 +13,9 @@ wayland-protocols
 wlroots0.18
 wlroots0.18-devel
 qt6-wayland
+fuzzel
 foot
 qutebrowser
+grim
+slurp
+swappy
