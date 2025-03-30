@@ -19,3 +19,43 @@ bar:
                     selected: {string: {text: "[{name}]"}}
                     ~empty: {string: {text: " {name} "}}
                     urgent: {string: {text: " !{name}! "}}
+
+  right:
+    - pipewire:
+        anchors:
+          volume: &volume
+            conditions:
+              muted: {string: {text: "{linear_volume}%", foreground: ff0000ff}}
+              ~muted: {string: {text: "{linear_volume}%"}}
+        content:
+          list:
+            items:
+              - map:
+                  conditions:
+                    type == "sink":
+                      map:
+                        conditions:
+                          icon == "audio-headset-bluetooth":
+                            string: {text: "🎧  "}
+                        default:
+                          - ramp:
+                              tag: linear_volume
+                              items:
+                                - string: {text: "🔈  "}
+                                - string: {text: "🔉  "}
+                                - string: {text: "🔊  "}
+                    type == "source":
+                      - string: {text: "🎙  "}
+              - map:
+                  <<: *volume
+
+    - battery:
+        name: BAT0
+        poll-interval: 30000
+        content:
+          string: {text: "BAT: {capacity}% |"}
+    - clock:
+        date-format: "%Y/%m/%d"
+        content:
+          - string: {text: " {date}", right-margin: 5}
+          - string: {text: "{time}"}
