@@ -80,6 +80,8 @@ bar:
                   <<: *discharging
                 state == discharging:
                   <<: *discharging
+                state == "not charging":
+                  <<: *discharging
                 state == charging:
                   - string: {text: 󰂄, foreground: 00ff00ff}
                   - string: {text: "{capacity}%"}
