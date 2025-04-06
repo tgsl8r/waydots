@@ -25,8 +25,8 @@ editscreen() {
 }
 
 askscreenshot() {
-	type=$(printf "edit\ncopy\nsave" | fuzzel -di -l 3) || exit 1
-	screenshot=$(printf "shot\nscreen" | fuzzel -l 2 -di) || exit 1
+	type=$(printf "edit\ncopy\nsave" | fuzzel -di -l 3 -p "󰵝 ") || exit 1
+	screenshot=$(printf "shot\nscreen" | fuzzel -l 2 -di -p "󰵝 ") || exit 1
 	case ${type}${screenshot} in
 	"saveshot") saveshot ;;
 	"savescreen") savescreen ;;

@@ -2,7 +2,7 @@
 
 askSystem() {
 	choice=$(
-		printf "Lock\nLogout\nReboot\nShutdown\nSuspend" | fuzzel -l 5 -w 10 -di
+		printf "Lock\nLogout\nReboot\nShutdown\nSuspend" | fuzzel -l 5 -w 10 -di -p "󱩛 "
 	)
 
 	case $choice in

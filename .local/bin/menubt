@@ -30,7 +30,7 @@ count=$(echo "$saved" | wc -l)
 
 if [ "$count" -gt 1 ]; then
 	choice=$(
-		echo "$devices" | cut -d' ' -f3- | sort | fuzzel -l "$count" -w 20 -di
+		echo "$devices" | cut -d' ' -f3- | sort | fuzzel -l "$count" -w 20 -di -p "󰂯 "
 	) || exit 0
 
 	echo "$choice" | rg -q "\*" && choice=$(echo "$choice" | cut -d' ' -f1)
