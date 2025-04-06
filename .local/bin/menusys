@@ -6,11 +6,11 @@ askSystem() {
 	)
 
 	case $choice in
-	Lock) sudo loginctl lock-sessions ;;
-	Logout) sudo loginctl logout ;;
-	Reboot) sudo loginctl reboot ;;
-	Shutdown) sudo loginctl poweroff ;;
-	Suspend) sudo loginctl suspend ;;
+	Lock) lock ;;
+	Logout) loginctl kill-user $USER ;;
+	Reboot) loginctl reboot ;;
+	Shutdown) loginctl poweroff ;;
+	Suspend) loginctl suspend ;;
 	esac
 }
 
