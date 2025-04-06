@@ -5,6 +5,8 @@ bar:
   spacing: 5
 
   left:
+    - label:
+        content: {string: {text: ' ', foreground: 478061ff}}
     - dwl:
         number-of-tags: 9
         dwl-info-filename: "/home/toby/.cache/dwl_info"
