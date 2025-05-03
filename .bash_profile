@@ -1,9 +1,15 @@
 # .bash_profile
 
-# Get the aliases and functions
+# Source bashrc
 [ -f $HOME/.bashrc ] && . $HOME/.bashrc
 
 # Add user scripts to PATH
 PATH=~/.local/bin:$PATH
 
-exec wstart
+if [ -n "$TMUX" ];
+then
+  echo tmux
+else
+  exec wstart
+fi
+
