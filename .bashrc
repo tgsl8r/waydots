@@ -6,6 +6,9 @@
 ## alisases and functions
 alias ls='ls --color=auto'
 alias dot='/usr/bin/git --git-dir=$HOME/.dots --work-tree=$HOME'
+alias n='nvim'
+alias lazy='NVIM_APPNAME=nvim-lazy nvim'
+alias sudo='sudo '
 
 # yazi helper
 function y() {
@@ -16,6 +19,9 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# Activate mise
+eval "$(mise activate bash)"
 
 # prompt
 PS1='[\u@\h \W]\$ '
